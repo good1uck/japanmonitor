@@ -1,5 +1,7 @@
 # Japan Monitor
 
+> **Language / 言語 / 语言 / 언어**: [English](README.md) | [中文](README.zh.md) | [日本語](README.ja.md) | [한국어](README.ko.md)
+
 **Real-time Japan intelligence dashboard** — AI-powered news aggregation, regional security monitoring, and infrastructure tracking focused on Japan and the Asia-Pacific region.
 
 [![GitHub stars](https://img.shields.io/github/stars/good1uck/japanmonitor?style=social)](https://github.com/good1uck/japanmonitor/stargazers)
@@ -420,8 +422,8 @@ The AI summarization pipeline adds content-based deduplication: headlines are ha
 
 ```bash
 # Clone and run
-git clone https://github.com/koala73/worldmonitor.git
-cd worldmonitor
+git clone https://github.com/good1uck/japanmonitor.git
+cd japanmonitor
 npm install
 npm run dev
 ```
