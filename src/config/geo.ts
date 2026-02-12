@@ -87,7 +87,7 @@ export const INTEL_HOTSPOTS: Hotspot[] = [
     description: 'Disputed islands in East China Sea. Frequent Chinese incursions, Japan Coast Guard patrols.',
     status: 'Monitoring',
     escalationScore: 3,
-    escalationTrend: 'elevated',
+    escalationTrend: 'escalating',
     escalationIndicators: ['Weekly Chinese incursions', 'JCG confrontations', 'Military aviation nearby'],
     history: {
       lastMajorEvent: 'Nationalization crisis',
@@ -110,7 +110,7 @@ export const INTEL_HOTSPOTS: Hotspot[] = [
     description: 'High-tension area. Taiwan independence debate, Chinese military pressure, Japan security concern.',
     status: 'Monitoring',
     escalationScore: 4,
-    escalationTrend: 'elevated',
+    escalationTrend: 'escalating',
     escalationIndicators: ['PLA exercises frequent', 'Japan defense white paper concern', 'US-Japan contingency planning'],
     history: {
       lastMajorEvent: 'Pelosi visit crisis',
@@ -133,7 +133,7 @@ export const INTEL_HOTSPOTS: Hotspot[] = [
     description: 'Nuclear-armed state. Regular missile tests over/near Japan. Abduction issue unresolved.',
     status: 'Monitoring',
     escalationScore: 3,
-    escalationTrend: 'elevated',
+    escalationTrend: 'escalating',
     escalationIndicators: ['Frequent missile tests', 'Nuclear threat to Japan', 'Abductee issue', 'Russia-DPRK ties'],
     history: {
       lastMajorEvent: 'Nuclear ICBM tests',
@@ -202,7 +202,7 @@ export const INTEL_HOTSPOTS: Hotspot[] = [
     description: 'Key regional ally and economic partner. Complex historical issues. Security cooperation increasing.',
     status: 'Monitoring',
     escalationScore: 2,
-    escalationTrend: 'improving',
+    escalationTrend: 'de-escalating',
     escalationIndicators: ['GSOMIA restored', 'Historical tensions easing', 'Security trilateral (US-JP-ROK)'],
     history: {
       lastMajorEvent: 'Yoon administration',
@@ -225,7 +225,7 @@ export const INTEL_HOTSPOTS: Hotspot[] = [
     description: 'Regional superpower. Complex relationship with Japan. Economic interdependence with security tensions.',
     status: 'Monitoring',
     escalationScore: 3,
-    escalationTrend: 'elevated',
+    escalationTrend: 'escalating',
     escalationIndicators: ['Senkaku incursions', 'Military modernization', 'Economic coercion concerns'],
     history: {
       lastMajorEvent: 'Xi third term',
@@ -266,7 +266,7 @@ export const CONFLICT_ZONES: ConflictZone[] = [
     keywords: ['taiwan', 'strait', 'pla', 'exercises', 'strait crisis', 'tsmc'],
     startDate: 'Ongoing since 1949',
     location: 'Taiwan Strait',
-    description: 'Persistent military tensions. Regular PLA exercises, air incursions, and naval patrols. US-Japan contingency planning active. Critical to Japan's security.',
+    description: 'Persistent military tensions. Regular PLA exercises, air incursions, and naval patrols. US-Japan contingency planning active. Critical to Japan security.',
     keyDevelopments: ['Frequent ADIZ incursions', 'Joint US-Japan exercises', 'Japanese defense posture', 'Semiconductor concerns'],
   },
   {
@@ -289,7 +289,7 @@ export const CONFLICT_ZONES: ConflictZone[] = [
     name: 'Korean Peninsula Tensions',
     coords: [[126, 37], [129, 37], [129, 39], [126, 39]],
     center: [127.5, 38],
-    intensity: 'elevated',
+    intensity: 'medium',
     parties: ['DPRK', 'ROK', 'US Forces Korea', 'Japan (regional)'],
     casualties: 'DMZ incidents',
     displaced: 'N/A',
@@ -345,6 +345,70 @@ export const CONFLICT_ZONES: ConflictZone[] = [
     keyDevelopments: ['Japan sanctions', 'G7 coordination', 'Russia-Japan relations frozen', 'Energy security'],
   },
 ];
+
+
+// Japan-relevant undersea cables
+export const UNDERSEA_CABLES: UnderseaCable[] = [
+  {
+    id: 'faster',
+    name: 'FASTER',
+    points: [[-122.0, 37.0], [-155.0, 22.0], [139.0, 35.0]],
+    major: true,
+    capacityTbps: 60,
+    rfsYear: 2016,
+    owners: ['Google', 'China Mobile', 'China Telecom', 'KDDI', 'SingTel'],
+    landingPoints: [
+      { country: 'US', countryName: 'United States', city: 'Oregon', lat: 43.37, lon: -124.22 },
+      { country: 'JP', countryName: 'Japan', city: 'Chikura', lat: 34.95, lon: 139.95 },
+      { country: 'JP', countryName: 'Japan', city: 'Shima', lat: 34.32, lon: 136.85 },
+    ],
+    countriesServed: [
+      { country: 'US', capacityShare: 0.03, isRedundant: true },
+      { country: 'JP', capacityShare: 0.15, isRedundant: true },
+    ],
+  },
+  {
+    id: 'jupiter',
+    name: 'Jupiter',
+    points: [[-122.0, 37.0], [139.0, 35.0]],
+    major: true,
+    capacityTbps: 144,
+    rfsYear: 2024,
+    owners: ['Google', 'KDDI'],
+    landingPoints: [
+      { country: 'US', countryName: 'United States', city: 'California', lat: 37.0, lon: -122.0 },
+      { country: 'JP', countryName: 'Japan', city: 'Chikura', lat: 34.95, lon: 139.95 },
+    ],
+    countriesServed: [
+      { country: 'US', capacityShare: 0.05, isRedundant: true },
+      { country: 'JP', capacityShare: 0.20, isRedundant: true },
+    ],
+  },
+];
+
+// Japan-relevant military bases (from MILITARY_BASES_EXPANDED or create minimal list)
+export const MILITARY_BASES: MilitaryBase[] = MILITARY_BASES_EXPANDED.filter(base => 
+  base.country === 'Japan' || (base.lat > 24 && base.lat < 46 && base.lon > 122 && base.lon < 154)
+);
+
+// Japan-relevant nuclear facilities
+export const NUCLEAR_FACILITIES: NuclearFacility[] = [
+  { id: 'fukushima', name: 'Fukushima Daiichi', lat: 37.4217, lon: 140.4730, type: 'plant', operator: 'TEPCO (Japan)', status: 'decommissioned' },
+  { id: 'kashiwazaki', name: 'Kashiwazaki-Kariwa', lat: 37.4260, lon: 138.5946, type: 'plant', operator: 'TEPCO (Japan)', status: 'inactive' },
+  { id: 'takahama', name: 'Takahama', lat: 35.5236, lon: 135.5034, type: 'plant', operator: 'Kansai Electric (Japan)', status: 'active' },
+  { id: 'ohi', name: 'Ohi', lat: 35.5422, lon: 135.6517, type: 'plant', operator: 'Kansai Electric (Japan)', status: 'active' },
+  { id: 'genkai', name: 'Genkai', lat: 33.5156, lon: 129.8350, type: 'plant', operator: 'Kyushu Electric (Japan)', status: 'active' },
+];
+
+export const MAP_URLS = {
+  overviewMap: 'https://example.com/map.json',
+  world: '/data/countries.geojson',
+};
+
+export const SANCTIONED_COUNTRIES: string[] = ['KP', 'RU'];
+
+
+
 
 
 export const ECONOMIC_CENTERS: EconomicCenter[] = [

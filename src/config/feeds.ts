@@ -5,15 +5,6 @@ const SITE_VARIANT = import.meta.env.VITE_VARIANT || 'full';
 // Helper to create RSS proxy URL (Vercel)
 const rss = (url: string) => `/api/rss-proxy?url=${encodeURIComponent(url)}`;
 
-// Railway proxy for feeds blocked by Vercel IPs (UN News, CISA, etc.)
-// Reuses VITE_WS_RELAY_URL which is already configured for AIS/OpenSky
-const wsRelayUrl = import.meta.env.VITE_WS_RELAY_URL || '';
-const railwayBaseUrl = wsRelayUrl
-  ? wsRelayUrl.replace('wss://', 'https://').replace('ws://', 'http://').replace(/\/$/, '')
-  : '';
-const railwayRss = (url: string) =>
-  railwayBaseUrl ? `${railwayBaseUrl}/rss?url=${encodeURIComponent(url)}` : rss(url);
-
 // Source tier system for prioritization (lower = more authoritative)
 // Tier 1: Wire services - fastest, most reliable breaking news
 // Tier 2: Major outlets - high-quality journalism
@@ -327,8 +318,6 @@ const FULL_FEEDS: Record<string, Feed[]> = {
     { name: 'CSIS Japan', url: rss('https://news.google.com/rss/search?q=site:csis.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
     { name: 'Atlantic Council Japan', url: rss('https://news.google.com/rss/search?q=site:atlanticcouncil.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
   ],
-};
-
 };
 
 // Tech/AI variant feeds

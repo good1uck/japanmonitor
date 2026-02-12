@@ -12,7 +12,141 @@ export interface EntityEntry {
 
 export const ENTITY_REGISTRY: EntityEntry[] = [
   // ============================================================================
-  // INDICES
+  // JAPAN INDICES & MARKETS
+  // ============================================================================
+  {
+    id: '^N225',
+    type: 'index',
+    name: 'Nikkei 225',
+    aliases: ['nikkei', 'nikkei 225', 'n225', 'nikkei index', 'tokyo index'],
+    keywords: ['japan market', 'tokyo stock exchange', 'japanese stocks', 'tse'],
+    related: ['^TOPX', 'JPY=X'],
+  },
+  {
+    id: '^TOPX',
+    type: 'index',
+    name: 'TOPIX',
+    aliases: ['topix', 'tokyo price index'],
+    keywords: ['japan market', 'tokyo stock exchange', 'tse', 'japanese stocks'],
+    related: ['^N225', 'JPY=X'],
+  },
+  {
+    id: 'JPY=X',
+    type: 'index',
+    name: 'Japanese Yen',
+    aliases: ['yen', 'jpy', 'japanese yen', 'usd/jpy'],
+    keywords: ['currency', 'forex', 'bank of japan', 'boj', 'carry trade'],
+    related: ['^N225', 'BOJ'],
+  },
+
+  // ============================================================================
+  // JAPANESE COMPANIES
+  // ============================================================================
+  {
+    id: 'SONY',
+    type: 'company',
+    name: 'Sony Group Corporation',
+    aliases: ['sony', '6758.t', 'playstation', 'ps5'],
+    keywords: ['gaming', 'electronics', 'playstation', 'entertainment', 'image sensor', 'music'],
+    sector: 'Technology',
+    related: ['NTDOY', 'MSFT'],
+  },
+  {
+    id: 'NTDOY',
+    type: 'company',
+    name: 'Nintendo Co., Ltd.',
+    aliases: ['nintendo', '7974.t', 'switch', 'mario'],
+    keywords: ['gaming', 'switch', 'mario', 'zelda', 'pokemon', 'console'],
+    sector: 'Technology',
+    related: ['SONY', 'MSFT'],
+  },
+  {
+    id: '9984.T',
+    type: 'company',
+    name: 'SoftBank Group Corp.',
+    aliases: ['softbank', 'softbank group', 'masayoshi son', 'son masayoshi', 'vision fund'],
+    keywords: ['investment', 'vision fund', 'arm', 'telecom', 'venture capital', 'alibaba'],
+    sector: 'Technology',
+    related: ['BABA', 'ARM'],
+  },
+  {
+    id: '4755.T',
+    type: 'company',
+    name: 'Rakuten Group, Inc.',
+    aliases: ['rakuten', 'mikitani', 'rakuten mobile'],
+    keywords: ['ecommerce', 'fintech', 'mobile', 'marketplace', 'online shopping'],
+    sector: 'Technology',
+    related: ['AMZN', 'BABA'],
+  },
+  {
+    id: '7203.T',
+    type: 'company',
+    name: 'Toyota Motor Corporation',
+    aliases: ['toyota', 'lexus', 'prius'],
+    keywords: ['automotive', 'hybrid', 'electric vehicle', 'manufacturing', 'cars'],
+    sector: 'Automotive',
+    related: ['TM', 'HMC', 'TSLA'],
+  },
+  {
+    id: '7267.T',
+    type: 'company',
+    name: 'Honda Motor Co., Ltd.',
+    aliases: ['honda', 'hmc', 'acura'],
+    keywords: ['automotive', 'motorcycles', 'manufacturing', 'cars', 'electric vehicle'],
+    sector: 'Automotive',
+    related: ['TM', '7203.T', 'TSLA'],
+  },
+  {
+    id: '6502.T',
+    type: 'company',
+    name: 'Toshiba Corporation',
+    aliases: ['toshiba'],
+    keywords: ['electronics', 'infrastructure', 'nuclear', 'semiconductor'],
+    sector: 'Technology',
+    related: ['SONY'],
+  },
+  {
+    id: '6954.T',
+    type: 'company',
+    name: 'Fanuc Corporation',
+    aliases: ['fanuc', 'industrial robots'],
+    keywords: ['robotics', 'automation', 'manufacturing', 'industrial'],
+    sector: 'Industrials',
+    related: [],
+  },
+  {
+    id: '8306.T',
+    type: 'company',
+    name: 'Mitsubishi UFJ Financial Group',
+    aliases: ['mufg', 'mitsubishi ufj', 'mitsubishi bank'],
+    keywords: ['banking', 'finance', 'financial services', 'megabank'],
+    sector: 'Financials',
+    related: ['SMFG', 'MFG'],
+  },
+  {
+    id: 'TSM',
+    type: 'company',
+    name: 'Taiwan Semiconductor Manufacturing Company',
+    aliases: ['tsmc', 'taiwan semi', 'tsm'],
+    keywords: ['semiconductor', 'chips', 'foundry', 'taiwan', 'manufacturing', 'ai chips'],
+    sector: 'Technology',
+    related: ['NVDA', 'ASML', 'INTC', 'SONY'],
+  },
+
+  // ============================================================================
+  // JAPANESE GOVERNMENT & INSTITUTIONS
+  // ============================================================================
+  {
+    id: 'BOJ',
+    type: 'index',
+    name: 'Bank of Japan',
+    aliases: ['boj', 'bank of japan', 'kuroda', 'ueda kazuo'],
+    keywords: ['monetary policy', 'interest rates', 'yen', 'yield curve control', 'jpy'],
+    related: ['JPY=X', '^N225'],
+  },
+
+  // ============================================================================
+  // GLOBAL INDICES (for reference)
   // ============================================================================
   {
     id: '^GSPC',
