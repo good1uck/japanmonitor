@@ -1,7 +1,7 @@
 {
-  "name": "world-monitor",
+  "name": "japan-monitor",
   "private": true,
-  "version": "2.1.4",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

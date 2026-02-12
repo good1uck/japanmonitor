@@ -1,103 +1,54 @@
-# World Monitor
+# Japan Monitor
 
-**Real-time global intelligence dashboard** — AI-powered news aggregation, geopolitical monitoring, and infrastructure tracking in a unified situational awareness interface.
+**Real-time Japan intelligence dashboard** — AI-powered news aggregation, regional security monitoring, and infrastructure tracking focused on Japan and the Asia-Pacific region.
 
-[![GitHub stars](https://img.shields.io/github/stars/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/koala73/worldmonitor?style=social)](https://github.com/koala73/worldmonitor/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/good1uck/japanmonitor?style=social)](https://github.com/good1uck/japanmonitor/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/good1uck/japanmonitor?style=social)](https://github.com/good1uck/japanmonitor/network/members)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Last commit](https://img.shields.io/github/last-commit/koala73/worldmonitor)](https://github.com/koala73/worldmonitor/commits/main)
-
-<p align="center">
-  <a href="https://worldmonitor.app"><strong>Live Demo</strong></a> &nbsp;·&nbsp;
-  <a href="https://tech.worldmonitor.app"><strong>Tech Variant</strong></a> &nbsp;·&nbsp;
-  <a href="./docs/DOCUMENTATION.md"><strong>Full Documentation</strong></a>
-</p>
-
-![World Monitor Dashboard](new-world-monitor.png)
 
 ---
 
-## Why World Monitor?
+## Why Japan Monitor?
 
 | Problem | Solution |
 |---------|----------|
-| News scattered across 100+ sources | **Single unified dashboard** with 100+ curated feeds |
-| No geospatial context for events | **Interactive map** with 25+ toggleable data layers |
-| Information overload | **AI-synthesized briefs** with focal point detection |
-| Crypto/macro signal noise | **7-signal market radar** with composite BUY/CASH verdict |
-| Expensive OSINT tools ($$$) | **100% free & open source** |
-| Static news feeds | **Real-time updates** with live video streams |
-
----
-
-## Live Demos
-
-| Variant | URL | Focus |
-|---------|-----|-------|
-| **World Monitor** | [worldmonitor.app](https://worldmonitor.app) | Geopolitics, military, conflicts, infrastructure |
-| **Tech Monitor** | [tech.worldmonitor.app](https://tech.worldmonitor.app) | Startups, AI/ML, cloud, cybersecurity |
-
-Both variants run from a single codebase — switch between them with one click.
+| Japan news scattered across sources | **Single unified dashboard** with Japan-focused feeds |
+| No regional security context | **Interactive map** with Japan hotspots & regional tensions |
+| Information overload | **AI-synthesized briefs** on Japan developments |
+| Regional threat monitoring | **Real-time tracking** of Senkaku, North Korea, Taiwan Strait |
+| Economic indicators | **Nikkei 225, JPY, BOJ** monitoring with market signals |
 
 ---
 
 ## Key Features
 
-### Interactive Global Map
-- **25+ data layers** — conflicts, military bases, nuclear facilities, undersea cables, pipelines, satellite fire detection, protests, natural disasters, datacenters, and more
-- **Smart clustering** — markers intelligently group at low zoom, expand on zoom in
-- **Progressive disclosure** — detail layers (bases, nuclear, datacenters) appear only when zoomed in; zoom-adaptive opacity prevents clutter at world view
-- **Label deconfliction** — overlapping labels (e.g., multiple BREAKING badges) are automatically suppressed by priority, highest-severity first
-- **8 regional presets** — Global, Americas, Europe, MENA, Asia, Africa, Oceania, Latin America
+### Japan-Focused Intelligence
+- **10 key hotspots** — Tokyo, Okinawa, Senkaku, Taiwan Strait, North Korea, Northern Territories, and more
+- **Regional security monitoring** — China-Japan relations, DPRK threats, Taiwan contingency
+- **Defense tracking** — JSDF, US Forces Japan, regional military activity
+- **Economic dashboard** — Nikkei 225, JPY/USD, Bank of Japan policy, Tokyo Stock Exchange
+
+### Interactive Regional Map
+- **Japan-centric layers** — territorial disputes, US military bases, strategic waterways
+- **Smart clustering** — regional events intelligently grouped
+- **Regional presets** — Japan focus, East Asia, Indo-Pacific views
 - **Time filtering** — 1h, 6h, 24h, 48h, 7d event windows
 
-### AI-Powered Intelligence
-- **World Brief** — LLM-synthesized summary of top global developments (Groq Llama 3.1, Redis-cached)
-- **Hybrid Threat Classification** — instant keyword classifier with async LLM override for higher-confidence results
-- **Focal Point Detection** — correlates entities across news, military activity, protests, outages, and markets to identify convergence
-- **Country Instability Index** — real-time stability scores for 20 monitored nations using weighted multi-signal blend
-- **Strategic Posture Assessment** — composite risk score combining all intelligence modules with trend detection
+### AI-Powered Analysis
+- **Japan Brief** — LLM-synthesized summary of key developments
+- **Threat Classification** — instant keyword detection with LLM override
+- **Regional Convergence** — correlates news, military activity, and economic signals
+- **Stability Index** — real-time assessment of Japan and regional security
 
-### Real-Time Data Layers
+### Real-Time Data Sources
+- **Japan Media** — NHK World, Japan Times, Nikkei Asia, Kyodo News, Asahi Shimbun
+- **Defense & Security** — JSDF updates, US Forces Japan, regional military tracking
+- **Economic** — Bank of Japan, Nikkei 225, JPY monitoring
+- **Regional** — China-Japan, Korea-Japan, Taiwan Strait, Russia-Japan relations
+- **Disaster Monitoring** — Earthquakes, tsunamis, typhoons, Fukushima updates
 
-<details>
-<summary><strong>Geopolitical</strong></summary>
-
-- Active conflict zones with escalation tracking
-- Intelligence hotspots with news correlation
-- Social unrest events (ACLED + GDELT)
-- Sanctions regimes
-- Weather alerts and severe conditions
-
-</details>
-
-<details>
-<summary><strong>Military & Strategic</strong></summary>
-
-- 220+ military bases from 9 operators
-- Live military flight tracking (ADS-B)
-- Naval vessel monitoring (AIS)
-- Nuclear facilities & gamma irradiators
-- APT cyber threat actor attribution
-- Spaceports & launch facilities
-
-</details>
-
-<details>
-<summary><strong>Infrastructure</strong></summary>
-
-- Undersea cables with landing points
-- Oil & gas pipelines
-- AI datacenters (111 major clusters)
-- Internet outages (Cloudflare Radar)
-- Critical mineral deposits
-- NASA FIRMS satellite fire detection (VIIRS thermal hotspots)
-
-</details>
-
-<details>
-<summary><strong>Market & Crypto Intelligence</strong></summary>
+---
 
 - 7-signal macro radar with composite BUY/CASH verdict
 - BTC spot ETF flow tracker (IBIT, FBTC, GBTC, and 7 more)
