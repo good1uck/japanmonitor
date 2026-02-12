@@ -20,104 +20,57 @@ const railwayRss = (url: string) =>
 // Tier 3: Specialty sources - domain expertise
 // Tier 4: Aggregators & blogs - useful but less authoritative
 export const SOURCE_TIERS: Record<string, number> = {
-  // Tier 1 - Wire Services
+  // Tier 1 - Wire Services & Major Japan Media
   'Reuters': 1,
   'AP News': 1,
   'AFP': 1,
   'Bloomberg': 1,
-
-  // Tier 2 - Major Outlets
+  'Kyodo News': 1,
+  'NHK World': 1,
+  
+  // Tier 2 - Major Japan Outlets
+  'Japan Times': 2,
+  'Nikkei Asia': 2,
+  'Asahi Shimbun': 2,
+  'Mainichi': 2,
+  'BBC Asia': 2,
   'BBC World': 2,
-  'BBC Middle East': 2,
-  'Guardian World': 2,
-  'Guardian ME': 2,
-  'NPR News': 2,
-  'CNN World': 2,
-  'CNBC': 2,
-  'MarketWatch': 2,
-  'Al Jazeera': 2,
+  'Reuters Asia': 1,
+  'Reuters Japan': 1,
+  'Bloomberg Japan': 1,
   'Financial Times': 2,
-  'Politico': 2,
-  'Reuters World': 1,
-  'Reuters Business': 1,
-  'OpenAI News': 3,
+  'The Diplomat': 2,
+  'The Diplomat Japan': 2,
 
-  // Tier 1 - Official Government & International Orgs
-  'White House': 1,
-  'State Dept': 1,
-  'Pentagon': 1,
-  'UN News': 1,
-  'CISA': 1,
-  'Treasury': 2,
-  'DOJ': 2,
-  'DHS': 2,
-  'CDC': 2,
-  'FEMA': 2,
-
-  // Tier 3 - Specialty
+  // Tier 1 - Japanese Government & Regional Officials
+  'MOFA Japan': 1,
+  'Japan PM Office': 1,
+  'Bank of Japan': 1,
+  
+  // Tier 2 - Regional & International
+  'CSIS': 2,
+  'Carnegie': 2,
+  'Atlantic Council': 2,
+  'Foreign Policy': 2,
+  'Foreign Affairs': 2,
+  
+  // Tier 3 - Defense & Specialty
+  'Defense News Japan': 3,
+  'Janes Japan': 3,
   'Defense One': 3,
   'Breaking Defense': 3,
   'The War Zone': 3,
-  'Defense News': 3,
   'Janes': 3,
-  'Foreign Policy': 3,
-  'The Diplomat': 3,
   'Bellingcat': 3,
-  'Krebs Security': 3,
-  'Federal Reserve': 3,
-  'SEC': 3,
-  'MIT Tech Review': 3,
-  'Ars Technica': 3,
-  'Atlantic Council': 3,
-  'Foreign Affairs': 3,
-  'CrisisWatch': 3,
-  'CSIS': 3,
-  'RAND': 3,
-  'Brookings': 3,
-  'Carnegie': 3,
-  'IAEA': 1,
-  'WHO': 1,
-  'UNHCR': 1,
-  'Xinhua': 3,
-  'TASS': 3,
-  'Layoffs.fyi': 3,
 
-  // Tier 2 - Premium Startup/VC Sources
-  'Y Combinator Blog': 2,
-  'a16z Blog': 2,
-  'Sequoia Blog': 2,
-  'Crunchbase News': 2,
-  'CB Insights': 2,
-  'PitchBook News': 2,
-  'The Information': 2,
-
-  // Tier 3 - Regional/Specialty Startup Sources
-  'EU Startups': 3,
-  'Tech.eu': 3,
-  'Sifted (Europe)': 3,
-  'The Next Web': 3,
-  'Tech in Asia': 3,
-  'TechCabal (Africa)': 3,
-  'Inc42 (India)': 3,
-  'YourStory': 3,
-  'Paul Graham Essays': 2,
-  'Stratechery': 2,
-  // Asia - Regional
-  'e27 (SEA)': 3,
-  'DealStreetAsia': 3,
-  'Pandaily (China)': 3,
-  '36Kr English': 3,
-  'TechNode (China)': 3,
-  'China Tech News': 3,
-  'The Bridge (Japan)': 3,
-  'Japan Tech News': 3,
+  // Tier 3 - Japan Tech & Startups
   'Nikkei Tech': 2,
-  'Korea Tech News': 3,
-  'KED Global': 3,
-  'Entrackr (India)': 3,
-  'India Tech News': 3,
-  'Taiwan Tech News': 3,
-  'GloNewswire (Taiwan)': 4,
+  'Japan Tech News': 3,
+  'The Bridge (Japan)': 3,
+  'Tech in Asia': 3,
+  
+  // Tier 2 - Regional Sources
+  'South China Morning Post': 2,
   // LATAM
   'LATAM Tech News': 3,
   'Startups.co (LATAM)': 3,
@@ -313,108 +266,69 @@ export function isStateAffiliatedSource(sourceName: string): boolean {
 }
 
 const FULL_FEEDS: Record<string, Feed[]> = {
+  japan: [
+    { name: 'NHK World', url: rss('https://www3.nhk.or.jp/nhkworld/en/news/rss.xml') },
+    { name: 'Japan Times', url: rss('https://www.japantimes.co.jp/feed/') },
+    { name: 'Nikkei Asia', url: rss('https://news.google.com/rss/search?q=site:asia.nikkei.com+Japan+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Kyodo News', url: rss('https://news.google.com/rss/search?q=site:english.kyodonews.net+when:1d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Mainichi', url: rss('https://news.google.com/rss/search?q=site:mainichi.jp+english+when:1d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Asahi Shimbun', url: rss('https://news.google.com/rss/search?q=site:asahi.com+english+when:1d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japan News', url: rss('https://news.google.com/rss/search?q=Japan+news+when:1d&hl=en-US&gl=US&ceid=US:en') },
+  ],
   politics: [
-    { name: 'BBC World', url: rss('https://feeds.bbci.co.uk/news/world/rss.xml') },
-    { name: 'NPR News', url: rss('https://feeds.npr.org/1001/rss.xml') },
-    { name: 'Guardian World', url: rss('https://www.theguardian.com/world/rss') },
-    { name: 'AP News', url: rss('https://news.google.com/rss/search?q=site:apnews.com&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Reuters World', url: rss('https://news.google.com/rss/search?q=site:reuters.com+world&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Politico', url: rss('https://www.politico.com/rss/politicopicks.xml') },
-    { name: 'The Diplomat', url: rss('https://thediplomat.com/feed/') },
+    { name: 'Japan PM Office', url: rss('https://news.google.com/rss/search?q=site:kantei.go.jp+OR+"Japanese+government"+OR+Diet+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'MOFA Japan', url: rss('https://news.google.com/rss/search?q=site:mofa.go.jp+OR+"Japanese+Ministry"+"Foreign+Affairs"+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japan Politics', url: rss('https://news.google.com/rss/search?q=(Kishida+OR+LDP+OR+"Liberal+Democratic+Party"+OR+Japanese+government)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'The Diplomat Japan', url: rss('https://news.google.com/rss/search?q=site:thediplomat.com+Japan+when:3d&hl=en-US&gl=US&ceid=US:en') },
   ],
-  middleeast: [
-    { name: 'BBC Middle East', url: rss('https://feeds.bbci.co.uk/news/world/middle_east/rss.xml') },
-    { name: 'Al Jazeera', url: rss('https://www.aljazeera.com/xml/rss/all.xml') },
-    // AlArabiya blocks cloud IPs (Cloudflare), use Google News fallback
-    { name: 'Al Arabiya', url: rss('https://news.google.com/rss/search?q=site:english.alarabiya.net+when:2d&hl=en-US&gl=US&ceid=US:en') },
-    // Arab News and Times of Israel removed — 403 from cloud IPs
-    { name: 'Guardian ME', url: rss('https://www.theguardian.com/world/middleeast/rss') },
-    { name: 'CNN World', url: rss('http://rss.cnn.com/rss/cnn_world.rss') },
-  ],
-  tech: [
-    { name: 'Hacker News', url: rss('https://hnrss.org/frontpage') },
-    { name: 'Ars Technica', url: rss('https://feeds.arstechnica.com/arstechnica/technology-lab') },
-    { name: 'The Verge', url: rss('https://www.theverge.com/rss/index.xml') },
-    { name: 'MIT Tech Review', url: rss('https://www.technologyreview.com/feed/') },
-  ],
-  ai: [
-    { name: 'AI News', url: rss('https://news.google.com/rss/search?q=(OpenAI+OR+Anthropic+OR+Google+AI+OR+"large+language+model"+OR+ChatGPT)+when:2d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'VentureBeat AI', url: rss('https://venturebeat.com/category/ai/feed/') },
-    { name: 'The Verge AI', url: rss('https://www.theverge.com/rss/ai-artificial-intelligence/index.xml') },
-    { name: 'MIT Tech Review', url: rss('https://www.technologyreview.com/topic/artificial-intelligence/feed') },
-    { name: 'ArXiv AI', url: rss('https://export.arxiv.org/rss/cs.AI') },
-  ],
-  finance: [
-    { name: 'CNBC', url: rss('https://www.cnbc.com/id/100003114/device/rss/rss.html') },
-    { name: 'MarketWatch', url: rss('https://feeds.marketwatch.com/marketwatch/topstories') },
-    { name: 'Yahoo Finance', url: rss('https://finance.yahoo.com/news/rssindex') },
-    { name: 'Financial Times', url: rss('https://www.ft.com/rss/home') },
-    { name: 'Reuters Business', url: rss('https://news.google.com/rss/search?q=site:reuters.com+business+markets&hl=en-US&gl=US&ceid=US:en') },
-  ],
-  gov: [
-    { name: 'White House', url: rss('https://news.google.com/rss/search?q=site:whitehouse.gov&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'State Dept', url: rss('https://news.google.com/rss/search?q=site:state.gov+OR+"State+Department"&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Pentagon', url: rss('https://news.google.com/rss/search?q=site:defense.gov+OR+Pentagon&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Treasury', url: rss('https://news.google.com/rss/search?q=site:treasury.gov+OR+"Treasury+Department"&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'DOJ', url: rss('https://news.google.com/rss/search?q=site:justice.gov+OR+"Justice+Department"+DOJ&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Federal Reserve', url: rss('https://www.federalreserve.gov/feeds/press_all.xml') },
-    { name: 'SEC', url: rss('https://www.sec.gov/news/pressreleases.rss') },
-    { name: 'CDC', url: rss('https://news.google.com/rss/search?q=site:cdc.gov+OR+CDC+health&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'FEMA', url: rss('https://news.google.com/rss/search?q=site:fema.gov+OR+FEMA+emergency&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'DHS', url: rss('https://news.google.com/rss/search?q=site:dhs.gov+OR+"Homeland+Security"&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'UN News', url: railwayRss('https://news.un.org/feed/subscribe/en/news/all/rss.xml') },
-    { name: 'CISA', url: railwayRss('https://www.cisa.gov/cybersecurity-advisories/all.xml') },
-  ],
-  layoffs: [
-    { name: 'Layoffs.fyi', url: rss('https://layoffs.fyi/feed/') },
-    { name: 'TechCrunch Layoffs', url: rss('https://techcrunch.com/tag/layoffs/feed/') },
-    { name: 'Layoffs News', url: rss('https://news.google.com/rss/search?q=(layoffs+OR+"job+cuts"+OR+"workforce+reduction")+when:3d&hl=en-US&gl=US&ceid=US:en') },
-  ],
-  thinktanks: [
-    { name: 'Foreign Policy', url: rss('https://foreignpolicy.com/feed/') },
-    { name: 'Atlantic Council', url: rss('https://www.atlanticcouncil.org/feed/') },
-    { name: 'Foreign Affairs', url: rss('https://www.foreignaffairs.com/rss.xml') },
-    { name: 'CSIS', url: rss('https://news.google.com/rss/search?q=site:csis.org+when:7d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'RAND', url: rss('https://news.google.com/rss/search?q=site:rand.org+when:7d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Brookings', url: rss('https://news.google.com/rss/search?q=site:brookings.edu+when:7d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Carnegie', url: rss('https://news.google.com/rss/search?q=site:carnegieendowment.org+when:7d&hl=en-US&gl=US&ceid=US:en') },
-  ],
-  crisis: [
-    { name: 'CrisisWatch', url: rss('https://www.crisisgroup.org/rss') },
-    { name: 'IAEA', url: rss('https://www.iaea.org/feeds/topnews') },
-    { name: 'WHO', url: rss('https://www.who.int/rss-feeds/news-english.xml') },
-    { name: 'UNHCR', url: rss('https://news.google.com/rss/search?q=site:unhcr.org+OR+UNHCR+refugees+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  defense: [
+    { name: 'Japan Defense', url: rss('https://news.google.com/rss/search?q=(JSDF+OR+"Japan+Self-Defense+Forces"+OR+"Japan+defense"+OR+"Japanese+military")+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'US Forces Japan', url: rss('https://news.google.com/rss/search?q=("US+Forces+Japan"+OR+USFJ+OR+Okinawa+base+OR+Kadena+OR+Futenma)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Defense News Japan', url: rss('https://news.google.com/rss/search?q=site:defensenews.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Janes Japan', url: rss('https://news.google.com/rss/search?q=site:janes.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
   ],
   regional: [
-    { name: 'Xinhua', url: rss('https://news.google.com/rss/search?q=site:xinhuanet.com+OR+Xinhua+when:1d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'TASS', url: rss('https://news.google.com/rss/search?q=site:tass.com+OR+TASS+Russia+when:1d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Kyiv Independent', url: rss('https://kyivindependent.com/feed/') },
-    { name: 'Moscow Times', url: rss('https://www.themoscowtimes.com/rss/news') },
-  ],
-  africa: [
-    { name: 'Africa News', url: rss('https://news.google.com/rss/search?q=(Africa+OR+Nigeria+OR+Kenya+OR+"South+Africa"+OR+Ethiopia)+when:2d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Sahel Crisis', url: rss('https://news.google.com/rss/search?q=(Sahel+OR+Mali+OR+Niger+OR+"Burkina+Faso"+OR+Wagner)+when:3d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'News24', url: railwayRss('https://feeds.capi24.com/v1/Search/articles/news24/Africa/rss') },
-    { name: 'BBC Africa', url: rss('https://feeds.bbci.co.uk/news/world/africa/rss.xml') },
-  ],
-  latam: [
-    { name: 'Latin America', url: rss('https://news.google.com/rss/search?q=(Brazil+OR+Mexico+OR+Argentina+OR+Venezuela+OR+Colombia)+when:2d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'BBC Latin America', url: rss('https://feeds.bbci.co.uk/news/world/latin_america/rss.xml') },
-    { name: 'Reuters LatAm', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(Brazil+OR+Mexico+OR+Argentina)+when:3d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Guardian Americas', url: rss('https://www.theguardian.com/world/americas/rss') },
-  ],
-  asia: [
-    { name: 'Asia News', url: rss('https://news.google.com/rss/search?q=(China+OR+Japan+OR+Korea+OR+India+OR+ASEAN)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'China-Japan', url: rss('https://news.google.com/rss/search?q=(China+Japan+OR+Senkaku+OR+"East+China+Sea"+OR+"Sino-Japanese")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'North Korea Japan', url: rss('https://news.google.com/rss/search?q=("North+Korea"+Japan+OR+DPRK+Japan+OR+missile+Japan)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Taiwan Strait', url: rss('https://news.google.com/rss/search?q=(Taiwan+strait+OR+"Taiwan+crisis"+OR+PLA+exercises)+Japan+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Korea-Japan', url: rss('https://news.google.com/rss/search?q=("South+Korea"+Japan+OR+Korea+Japan+OR+GSOMIA)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Russia-Japan', url: rss('https://news.google.com/rss/search?q=(Russia+Japan+OR+"Northern+Territories"+OR+Kuril+islands)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Reuters Asia', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(Japan+OR+Taiwan+OR+Korea+OR+China)+when:2d&hl=en-US&gl=US&ceid=US:en') },
     { name: 'BBC Asia', url: rss('https://feeds.bbci.co.uk/news/world/asia/rss.xml') },
-    { name: 'South China Morning Post', url: railwayRss('https://www.scmp.com/rss/91/feed/') },
-    { name: 'Reuters Asia', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(China+OR+Japan+OR+Taiwan+OR+Korea)+when:3d&hl=en-US&gl=US&ceid=US:en') },
   ],
-  energy: [
-    { name: 'Oil & Gas', url: rss('https://news.google.com/rss/search?q=(oil+price+OR+OPEC+OR+"natural+gas"+OR+pipeline+OR+LNG)+when:2d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Nuclear Energy', url: rss('https://news.google.com/rss/search?q=("nuclear+energy"+OR+"nuclear+power"+OR+uranium+OR+IAEA)+when:3d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Reuters Energy', url: rss('https://news.google.com/rss/search?q=site:reuters.com+(oil+OR+gas+OR+energy+OR+OPEC)+when:3d&hl=en-US&gl=US&ceid=US:en') },
-    { name: 'Mining & Resources', url: rss('https://news.google.com/rss/search?q=(lithium+OR+"rare+earth"+OR+cobalt+OR+mining)+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  economy: [
+    { name: 'Bank of Japan', url: rss('https://news.google.com/rss/search?q=("Bank+of+Japan"+OR+BOJ+OR+Japanese+yen+OR+JPY)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Tokyo Stock Exchange', url: rss('https://news.google.com/rss/search?q=(Nikkei+225+OR+"Tokyo+Stock+Exchange"+OR+TSE+OR+TOPIX)+when:1d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japanese Economy', url: rss('https://news.google.com/rss/search?q=("Japanese+economy"+OR+"Japan+GDP"+OR+"Japan+trade")+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Nikkei Business', url: rss('https://news.google.com/rss/search?q=site:asia.nikkei.com+business+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Reuters Japan', url: rss('https://news.google.com/rss/search?q=site:reuters.com+Japan+economy+business+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Bloomberg Japan', url: rss('https://news.google.com/rss/search?q=site:bloomberg.com+Japan+when:2d&hl=en-US&gl=US&ceid=US:en') },
   ],
+  tech: [
+    { name: 'Japan Tech', url: rss('https://news.google.com/rss/search?q=(Japan+technology+OR+Japanese+tech+OR+Sony+OR+Nintendo+OR+SoftBank+OR+Rakuten)+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Nikkei Tech', url: rss('https://news.google.com/rss/search?q=site:asia.nikkei.com+technology+when:2d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'The Bridge Japan', url: rss('https://news.google.com/rss/search?q=site:thebridge.jp+OR+"The+Bridge+Japan"+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japan Startups', url: rss('https://news.google.com/rss/search?q=(Japan+startup+OR+"Japanese+startup"+OR+Japan+unicorn)+funding+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  disaster: [
+    { name: 'Earthquake Japan', url: rss('https://news.google.com/rss/search?q=(Japan+earthquake+OR+tsunami+OR+seismic)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Typhoon Japan', url: rss('https://news.google.com/rss/search?q=(Japan+typhoon+OR+cyclone+OR+storm)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Fukushima', url: rss('https://news.google.com/rss/search?q=(Fukushima+OR+TEPCO+OR+"nuclear+Japan"+OR+Daiichi)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japan Weather', url: rss('https://news.google.com/rss/search?q=Japan+weather+disaster+warning+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  society: [
+    { name: 'Japan Society', url: rss('https://news.google.com/rss/search?q=(Japan+aging+OR+"Japanese+society"+OR+demographics+OR+immigration)+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Japan Culture', url: rss('https://news.google.com/rss/search?q=(Japan+culture+OR+anime+OR+manga+OR+"Japanese+tradition")+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Tokyo News', url: rss('https://news.google.com/rss/search?q=Tokyo+city+OR+Osaka+OR+Kyoto+when:3d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+  intl: [
+    { name: 'Foreign Policy Japan', url: rss('https://news.google.com/rss/search?q=site:foreignpolicy.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Carnegie Japan', url: rss('https://news.google.com/rss/search?q=site:carnegieendowment.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'CSIS Japan', url: rss('https://news.google.com/rss/search?q=site:csis.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
+    { name: 'Atlantic Council Japan', url: rss('https://news.google.com/rss/search?q=site:atlanticcouncil.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en') },
+  ],
+};
+
 };
 
 // Tech/AI variant feeds
@@ -645,43 +559,42 @@ const TECH_FEEDS: Record<string, Feed[]> = {
 export const FEEDS = SITE_VARIANT === 'tech' ? TECH_FEEDS : FULL_FEEDS;
 
 export const INTEL_SOURCES: Feed[] = [
-  // Defense & Security (Tier 1)
-  { name: 'Defense One', url: rss('https://www.defenseone.com/rss/all/'), type: 'defense' },
-  { name: 'Breaking Defense', url: rss('https://breakingdefense.com/feed/'), type: 'defense' },
-  { name: 'The War Zone', url: rss('https://www.thedrive.com/the-war-zone/rss'), type: 'defense' },
-  { name: 'Defense News', url: rss('https://www.defensenews.com/arc/outboundfeeds/rss/?outputType=xml'), type: 'defense' },
-  { name: 'Janes', url: rss('https://news.google.com/rss/search?q=site:janes.com+when:3d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
-  { name: 'CSIS', url: rss('https://www.csis.org/analysis?type=analysis'), type: 'defense' },
+  // Japan Defense & Security (Tier 1)
+  { name: 'Defense News Japan', url: rss('https://news.google.com/rss/search?q=site:defensenews.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
+  { name: 'Janes Japan', url: rss('https://news.google.com/rss/search?q=site:janes.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
+  { name: 'Breaking Defense Asia', url: rss('https://news.google.com/rss/search?q=site:breakingdefense.com+(Japan+OR+Asia+OR+Indo-Pacific)+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
+  { name: 'Defense One Japan', url: rss('https://news.google.com/rss/search?q=site:defenseone.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
+  { name: 'The War Zone Pacific', url: rss('https://news.google.com/rss/search?q=site:thedrive.com/the-war-zone+(Japan+OR+"Indo-Pacific"+OR+Taiwan)+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'defense' },
 
-  // International Relations (Tier 2)
-  { name: 'Chatham House', url: rss('https://news.google.com/rss/search?q=site:chathamhouse.org+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
-  { name: 'ECFR', url: rss('https://ecfr.eu/feed/'), type: 'intl' },
-  { name: 'Foreign Policy', url: rss('https://foreignpolicy.com/feed/'), type: 'intl' },
-  { name: 'Foreign Affairs', url: rss('https://www.foreignaffairs.com/rss.xml'), type: 'intl' },
-  { name: 'Atlantic Council', url: rss('https://www.atlanticcouncil.org/feed/'), type: 'intl' },
-  { name: 'Middle East Institute', url: rss('https://www.mei.edu/rss.xml'), type: 'intl' },
-
-  // Think Tanks & Research (Tier 3)
-  { name: 'RAND', url: rss('https://www.rand.org/rss/all.xml'), type: 'research' },
-  { name: 'Brookings', url: rss('https://www.brookings.edu/feed/'), type: 'research' },
-  { name: 'Carnegie', url: rss('https://carnegieendowment.org/rss/'), type: 'research' },
-  { name: 'FAS', url: rss('https://fas.org/feed/'), type: 'research' },
-  { name: 'NTI', url: rss('https://www.nti.org/rss/'), type: 'research' },
-
-  // OSINT & Monitoring (Tier 2)
+  // Regional Think Tanks & Analysis (Tier 2)
+  { name: 'CSIS Japan', url: rss('https://news.google.com/rss/search?q=site:csis.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
+  { name: 'Carnegie Japan', url: rss('https://news.google.com/rss/search?q=site:carnegieendowment.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'research' },
+  { name: 'Atlantic Council Japan', url: rss('https://news.google.com/rss/search?q=site:atlanticcouncil.org+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
+  { name: 'Foreign Policy Japan', url: rss('https://news.google.com/rss/search?q=site:foreignpolicy.com+Japan+when:7d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
+  { name: 'Foreign Affairs Asia', url: rss('https://news.google.com/rss/search?q=site:foreignaffairs.com+(Japan+OR+Asia+OR+"East+Asia")+when:14d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
+  { name: 'Brookings Asia', url: rss('https://news.google.com/rss/search?q=site:brookings.edu+(Japan+OR+Asia+OR+China)+when:14d&hl=en-US&gl=US&ceid=US:en'), type: 'research' },
+  { name: 'RAND Asia', url: rss('https://news.google.com/rss/search?q=site:rand.org+(Japan+OR+Asia+OR+"Pacific")+when:14d&hl=en-US&gl=US&ceid=US:en'), type: 'research' },
+  
+  // Regional Security (Tier 2)
+  { name: 'Chatham House Asia', url: rss('https://news.google.com/rss/search?q=site:chathamhouse.org+(Japan+OR+Asia)+when:14d&hl=en-US&gl=US&ceid=US:en'), type: 'intl' },
+  { name: 'The Diplomat', url: rss('https://thediplomat.com/feed/'), type: 'intl' },
+  
+  // OSINT & Cyber (Tier 2)
   { name: 'Bellingcat', url: rss('https://www.bellingcat.com/feed/'), type: 'osint' },
   { name: 'Krebs Security', url: rss('https://krebsonsecurity.com/feed/'), type: 'cyber' },
-
-  // Economic & Food Security (Tier 2)
-  { name: 'FAO News', url: rss('https://www.fao.org/rss/home/en/'), type: 'economic' },
 ];
 
-// Keywords that trigger alert status - must be specific to avoid false positives
+// Keywords that trigger alert status - Japan-specific and regional threats
 export const ALERT_KEYWORDS = [
   'war', 'invasion', 'military', 'nuclear', 'sanctions', 'missile',
   'airstrike', 'drone strike', 'troops deployed', 'armed conflict', 'bombing', 'casualties',
   'ceasefire', 'peace treaty', 'nato', 'coup', 'martial law',
   'assassination', 'terrorist', 'terror attack', 'cyber attack', 'hostage', 'evacuation order',
+  // Japan-specific
+  'j-alert', 'earthquake', 'tsunami', 'typhoon', 'senkaku', 'diaoyu',
+  'north korea missile', 'dprk missile', 'territorial waters', 'incursion',
+  'jsdf', 'self-defense forces', 'futenma', 'kadena', 'okinawa base',
+  'northern territories', 'kuril', 'taiwan strait crisis',
 ];
 
 // Patterns that indicate non-alert content (lifestyle, entertainment, etc.)
